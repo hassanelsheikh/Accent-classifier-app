@@ -2,8 +2,9 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install ffmpeg and dependencies
-RUN apt update && apt install -y ffmpeg && apt clean
+# Install ffmpeg and netcat-traditional for the health check
+# `netcat-traditional` provides the `nc` command used in start.sh
+RUN apt update && apt install -y ffmpeg netcat-traditional && apt clean
 
 COPY . /app
 
