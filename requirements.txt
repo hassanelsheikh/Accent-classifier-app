@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+streamlit
+requests
+moviepy
+speechbrain
+torchaudio
