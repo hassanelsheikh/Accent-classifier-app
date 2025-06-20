@@ -10,9 +10,11 @@ from pathlib import Path
 import requests
 
 app = FastAPI()
-# After — Load from local model path
-model = EncoderClassifier.from_hparams(source="/app/sb_models/Jzuluaga/accent-id-commonaccent_ecapa")
-
+# Load the model on startup (downloads if not already present)
+model = EncoderClassifier.from_hparams(
+    source="Jzuluaga/accent-id-commonaccent_ecapa",
+    savedir=Path("/app/sb_models/accent-model")
+)
 # Load model once
 model = EncoderClassifier.from_hparams("Jzuluaga/accent-id-commonaccent_ecapa")
 labels = list(model.hparams.label_encoder.lab2ind.keys())
