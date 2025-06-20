@@ -2,7 +2,8 @@
 
 ```markdown
 # 🗣️ English Accent Identifier
-Try it now!
+Try it now
+https://accentclassifier-955024163421.europe-west1.run.app/
 
 
 This project allows users to upload or link to a short `.mp4` video containing spoken English, and it detects the speaker's **accent** using a pre-trained SpeechBrain model.
