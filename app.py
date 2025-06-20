@@ -54,6 +54,7 @@ async def analyze_video(file: UploadFile = File(...)):
     scores, top_score, _, predicted_label = model.classify_file(str(audio_path))
 
     message = accent_messages.get(predicted_label[0], "No custom message available.")
+
     return AccentResult(label=predicted_label[0], confidence=float(top_score), message=message)
 
 @app.post("/analyze-url", response_model=AccentResult)
