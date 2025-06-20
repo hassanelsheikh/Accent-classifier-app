@@ -2,8 +2,6 @@ import streamlit as st
 import requests
 import os
 
-port = int(os.environ.get("PORT", 8501))
-
 st.set_page_config(page_title="Accent Identifier", layout="centered")
 st.title("🗣️ English Accent Identifier")
 st.write("Upload a short MP4 video or paste a direct video URL to detect the speaker's accent")
