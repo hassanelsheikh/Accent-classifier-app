@@ -24,21 +24,6 @@ Built with:
 
 ---
 
-## 📁 Project Structure
-
-```
-
-accent-identifier/
-├── app.py                 # FastAPI backend
-├── streamlit\_app.py       # Streamlit frontend
-├── examples/              # Folder with sample MP4 videos
-├── Dockerfile             # Unified container with FastAPI + Streamlit
-├── requirements.txt
-├── start.sh               # Bash script to run both servers
-└── README.md
-
-````
-
 ---
 
 ## ⚙️ Local Setup (Linux/macOS/WSL)
