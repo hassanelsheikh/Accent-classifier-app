@@ -2,24 +2,28 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install ffmpeg and netcat-traditional for the health check
-# `netcat-traditional` provides the `nc` command used in start.sh
+# Install ffmpeg and netcat-traditional for health checks
 RUN apt update && apt install -y ffmpeg netcat-traditional && apt clean
 
+# Copy project files
 COPY . /app
 
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# --- NEW STEP: Pre-download SpeechBrain Model ---
-# This step loads the model once during the Docker build process.
-# SpeechBrain will automatically download and cache the necessary files.
-# This avoids rate-limiting issues during container startup on Cloud Run.
-RUN python -c "from speechbrain.pretrained import EncoderClassifier; EncoderClassifier.from_hparams('Jzuluaga/accent-id-commonaccent_ecapa')"
+# --- Pre-download SpeechBrain model ---
+RUN python -c "\
+from speechbrain.pretrained import EncoderClassifier; \
+EncoderClassifier.from_hparams('Jzuluaga/accent-id-commonaccent_ecapa')"
 
-# Make sure the start script is executable
+# Copy cached model into app directory to persist it
+RUN mkdir -p /app/sb_models && cp -r /root/.cache/speechbrain/* /app/sb_models/
+
+# Make the start script executable
 RUN chmod +x start.sh
 
 # Cloud Run expects the container to listen on $PORT
 EXPOSE 8080
 
+# Start both FastAPI and Streamlit
 CMD ["bash", "start.sh"]

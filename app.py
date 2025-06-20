@@ -10,7 +10,8 @@ from pathlib import Path
 import requests
 
 app = FastAPI()
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+# After — Load from local model path
+model = EncoderClassifier.from_hparams(source="/app/sb_models/Jzuluaga/accent-id-commonaccent_ecapa")
 
 # Load model once
 model = EncoderClassifier.from_hparams("Jzuluaga/accent-id-commonaccent_ecapa")
