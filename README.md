@@ -2,6 +2,28 @@
 
 ```markdown
 # 🗣️ English Accent Identifier
+Supports  16 accents
+us
+england
+philippines
+canada
+wales
+newzealand
+singapore
+indian
+bermuda
+ireland
+scotland
+australia
+hongkong
+southatlantic
+malaysia
+
+
+
+
+
+
 Try it now
 https://accentclassifier-955024163421.europe-west1.run.app/
 
