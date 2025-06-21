@@ -1,8 +1,30 @@
 
 
-```markdown
 # 🗣️ English Accent Identifier
-Try it now!
+Supports  16 accents
+us
+england
+philippines
+canada
+wales
+newzealand
+singapore
+indian
+bermuda
+ireland
+scotland
+australia
+hongkong
+southatlantic
+malaysia
+
+
+
+
+
+
+Try it now
+https://accentclassifier-955024163421.europe-west1.run.app/
 
 
 This project allows users to upload or link to a short `.mp4` video containing spoken English, and it detects the speaker's **accent** using a pre-trained SpeechBrain model.
@@ -22,21 +44,6 @@ Built with:
 - Friendly messages tailored to each accent
 
 ---
-
-## 📁 Project Structure
-
-```
-
-accent-identifier/
-├── app.py                 # FastAPI backend
-├── streamlit\_app.py       # Streamlit frontend
-├── examples/              # Folder with sample MP4 videos
-├── Dockerfile             # Unified container with FastAPI + Streamlit
-├── requirements.txt
-├── start.sh               # Bash script to run both servers
-└── README.md
-
-````
 
 ---
 
