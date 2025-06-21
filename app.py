@@ -13,7 +13,7 @@ app = FastAPI()
 # Load the model on startup (downloads if not already present)
 model = EncoderClassifier.from_hparams(
     source="Jzuluaga/accent-id-commonaccent_ecapa",
-    savedir=Path("/app/sb_models/accent-model")
+    savedir=Path("/app/sb_models/accent-model"),
 )
 # Load model once
 model = EncoderClassifier.from_hparams("Jzuluaga/accent-id-commonaccent_ecapa")
@@ -42,6 +42,7 @@ class AccentResult(BaseModel):
     label: str
     confidence: float
     message: str
+    audio_path: str
 
 @app.post("/analyze", response_model=AccentResult)
 async def analyze_video(file: UploadFile = File(...)):
@@ -58,7 +59,7 @@ async def analyze_video(file: UploadFile = File(...)):
 
     message = accent_messages.get(predicted_label[0], "No custom message available.")
 
-    return AccentResult(label=predicted_label[0], confidence=float(top_score), message=message)
+    return AccentResult(label=predicted_label[0], confidence=float(top_score), message=message, audio_path=str(audio_path))
 
 @app.post("/analyze-url", response_model=AccentResult)
 async def analyze_from_url(video_url: str = Form(...)):
@@ -79,4 +80,4 @@ async def analyze_from_url(video_url: str = Form(...)):
     scores, top_score, _, predicted_label = model.classify_file(str(audio_path))
     message = accent_messages.get(predicted_label[0], "No custom message available.")
 
-    return AccentResult(label=predicted_label[0], confidence=float(top_score), message=message)
+    return AccentResult(label=predicted_label[0], confidence=float(top_score), message=message, audio_path=str(audio_path))

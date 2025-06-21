@@ -40,11 +40,9 @@ if uploaded_file is not None:
             st.markdown(f"**Confidence:** `{result['confidence'] * 100:.2f}%`")
             st.info(result['message'])
 
-            if "all_scores" in result:
-                st.markdown("---")
-                st.markdown("#### 🔢 All Accent Scores:")
-                for accent, score in result["all_scores"]:
-                    st.write(f"{accent:15}: {score * 100:.2f}%")
+            if "audio_path" in result:
+                st.audio(result['audio_path'], format="audio/wav")
+
         else:
             st.error("Failed to process the uploaded video.")
 
@@ -60,11 +58,8 @@ elif video_url:
             st.markdown(f"**Confidence:** `{result['confidence'] * 100:.2f}%`")
             st.info(result['message'])
 
-            if "all_scores" in result:
-                st.markdown("---")
-                st.markdown("#### All Accent Scores:")
-                for accent, score in result["all_scores"]:
-                    st.write(f"{accent:15}: {score * 100:.2f}%")
+            if "audio_path" in result:
+                st.audio(result['audio_path'], format="audio/wav")
         else:
             st.error("Failed to process the video URL.")
 # Process example video selection
@@ -83,11 +78,8 @@ elif example:
                 st.markdown(f"**Confidence:** `{result['confidence'] * 100:.2f}%`")
                 st.info(result['message'])
 
-                if "all_scores" in result:
-                    st.markdown("---")
-                    st.markdown("#### 🔢 All Accent Scores:")
-                    for accent, score in result["all_scores"]:
-                        st.write(f"{accent:15}: {score * 100:.2f}%")
+                if "audio_path" in result:
+                    st.audio(result['audio_path'], format="audio/wav")
             else:
                 st.error(f"Failed to process example: {example}")
     else:
